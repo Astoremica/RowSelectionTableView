@@ -12,6 +12,6 @@ TableViewを用いたリスト選択
 
 ## 環境
 
-Xcode 12.
-iOS 14.5.1
+- Xcode 12.5
+- iOS 14.5.1
 
