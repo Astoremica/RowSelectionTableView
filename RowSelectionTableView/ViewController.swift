@@ -7,6 +7,8 @@
 
 import UIKit
 
+var clearButtonItem : UIBarButtonItem!
+
 class ViewController: UIViewController {
     
     @IBOutlet weak var todoTableView: UITableView!
@@ -23,8 +25,25 @@ class ViewController: UIViewController {
         todoTableView.delegate = self
         // 区切り線なし
         todoTableView.separatorStyle = .none
-    }
+        
+        
+        clearButtonItem = UIBarButtonItem(title: "クリア", style: .plain, target: self, action: #selector(clearButtonPressed(_:)))
+        
+        self.navigationItem.rightBarButtonItem = clearButtonItem
     
+    }
+    @objc func clearButtonPressed(_ sender: UIBarButtonItem) {
+       print("クリアボタンが押されました")
+        let todoCount = todos.count - 1
+        for count in 0...todoCount {
+            var todo = todos[count]
+            todo.isMarked = false
+            
+            todos.remove(at: count)
+            todos.insert(todo, at: count)
+        }
+        todoTableView.reloadData()
+     }
     
 }
 
